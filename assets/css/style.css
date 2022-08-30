@@ -57,6 +57,9 @@ html {
 .mt-16 {
     margin-top: 16px !important;
 }
+.mt-32 {
+    margin-top: 32px !important;
+}
 
 .pull-right {
     float: right !important;
@@ -148,6 +151,17 @@ html {
     min-width: 160px;
 }
 
+#header .mobile-menu-btn{
+    color: white;
+    font-size: 16px;
+    float: right;
+    position: absolute;
+    line-height: 46.5px;
+    padding: 0 20px;
+    top: 0;
+    right: 0;
+    display: none;
+}
 #header .search-btn {
     color: white;
     font-size: 16px;
@@ -157,6 +171,10 @@ html {
     padding: 0 20px;
 }
 
+#header .mobile-menu-btn:hover{
+    background-color: #ccc;
+    color: #000;
+}
 #header .search-btn:hover {
     background-color: red;
     cursor: pointer;

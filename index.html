@@ -20,21 +20,27 @@
                 <li><a href="#band">Band</a></li>
                 <li><a href="#tour">Tour</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#">
-                    More 
-                    <i class="fa-solid fa-caret-down"></i>
+                <li>
+                    <a href="#">
+                        More 
+                        <i class="fa-solid fa-caret-down"></i>
+                    </a>
                     <ul class="subnav">
                         <li><a href="#">Merchandise</a></li>
                         <li><a href="#">Extras</a></li>
                         <li><a href="#">Media</a></li>
                     </ul>
-                </a></li>
+                </li>
             </ul>
             <!-- End: Nav -->
 
             <!-- Begin: Search -->
             <div class="search-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="mobile-menu-btn">
+                <i class="mobile-menu-btn-icon fa-solid fa-bars"></i>
             </div>
             <!-- End: Search -->
         </div>
@@ -56,15 +62,15 @@
                     <p class="about-text">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
                     <div class="row member-list">
-                        <div class="col col-third text-center">
+                        <div class="member-item col col-third text-center">
                             <p class="member-name">Name</p>
                             <img src="/assets/img/Member/bandmember.jpg" alt="Name" class="member-img">
                         </div>
-                        <div class="col col-third text-center">
+                        <div class="member-item col col-third text-center">
                             <p class="member-name">Name</p>
                             <img src="/assets/img/Member/bandmember.jpg" alt="Name" class="member-img">
                         </div>
-                        <div class="col col-third text-center">
+                        <div class="member-item col col-third text-center">
                             <p class="member-name">Name</p>
                             <img src="/assets/img/Member/bandmember.jpg" alt="Name" class="member-img">
                         </div>
@@ -85,8 +91,8 @@
                         </ul>
 
                         <!-- Places -->
-                        <div class="row places-list">
-                            <div class="col col-third">
+                        <div class="row places-list mt-16">
+                            <div class="member-item col col-third mt-32">
                                 <img src="/assets/img/Place/newyork.jpg" alt="NewYork" class="places-img">
                                 <div class="places-body">
                                     <h3 class="places-heading">New York</h3>
@@ -96,7 +102,7 @@
                                 </div>
                             </div>
 
-                            <div class="col col-third">
+                            <div class="member-item col col-third mt-32">
                                 <img src="/assets/img/Place/newyork.jpg" alt="NewYork" class="places-img">
                                 <div class="places-body">
                                     <h3 class="places-heading">New York</h3>
@@ -106,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="col col-third">
+                            <div class="member-item col col-third mt-32">
                                 <img src="/assets/img/Place/newyork.jpg" alt="NewYork" class="places-img">
                                 <div class="places-body">
                                     <h3 class="places-heading">New York</h3>
@@ -128,18 +134,18 @@
                     <p class="section-subheading">Fan? Drop a note!</p>
                     
                     <div class="row contact-content">
-                        <div class="col col-second contact-info">
+                        <div class="member-item col col-second contact-info">
                             <p><i class="fa-solid fa-location-dot"></i> Chicago,US</p>
                             <p><i class="fa-solid fa-phone"></i>Phone: +00 151515</p>
                             <p><i class="fa-solid fa-envelope"></i>Email: mail@mail.com</p>
                         </div>
-                        <div class="col col-second contact-form">
+                        <div class="member-item col col-second contact-form">
                             <form action="">
                                 <div class="row">
-                                    <div class="col col-second">
+                                    <div class="member-item col col-second">
                                         <input type="text" name="" placeholder="Name" required id="" class="form-control">
                                     </div>
-                                    <div class="col col-second">
+                                    <div class="member-item col col-second">
                                         <input type="email" name="" placeholder="Email" required id="" class="form-control">
                                     </div>
                                 </div>
@@ -238,6 +244,38 @@
         modalContainer.addEventListener('click', function (event){
             event.stopPropagation()
         });
+
+        var headerElement = document.getElementById('header');
+        var mobileMenuElement = document.querySelector('.mobile-menu-btn')
+        var headerHeight = header.clientHeight;
+
+        // open / close mobile menu
+        mobileMenuElement.onclick = function () {
+            var isClose = headerElement.clientHeight === headerHeight;
+            if(isClose) {
+                header.style.height = 'auto';
+            } else {
+                header.style.height = null;
+            }
+        }
+
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+
+        for(var i in menuItems) {
+            var menuItem = menuItems[i];
+            
+            
+            menuItem.onclick = function (event) {
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav');
+                if(isParentMenu){
+                    event.preventDefault();
+                } else {
+                    header.style.height = null;
+                }
+            }
+        }
+
+        
     </script>
 </body>
 </html>
